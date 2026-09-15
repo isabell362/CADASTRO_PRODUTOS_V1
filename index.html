@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Cadastro de Produtos</title>
-
+    <title>Sistema de estoque - POO</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,90 +12,68 @@
 
     <div class="container">
 
-        <h1>Cadastro de Produtos</h1>
+        <h1>Cadastro de produtos</h1>
 
+        <!-- Formulário de entrada -->
         <form id="produto-form">
 
             <div class="form-group">
-                <label for="nome">Nome do Produto</label>
-                <input
-                    type="text"
-                    id="nome"
-                    placeholder="Digite o nome do produto"
-                >
+                <label for="nome">Nome do produto:</label>
+                <input type="text" id="nome" placeholder="Ex. Notebook" required>
             </div>
 
             <div class="form-group">
-                <label for="preco">Preço</label>
-                <input
-                    type="number"
-                    id="preco"
-                    placeholder="Digite o preço"
-                    step="0.01"
-                    min="0"
-                >
+                <label for="preco">Preço (R$):</label>
+                <input type="number" id="preco" step="0.01" placeholder="Ex. 3500.00" required>
             </div>
 
             <div class="form-group">
-                <label for="quantidade">Quantidade</label>
-                <input
-                    type="number"
-                    id="quantidade"
-                    placeholder="Digite a quantidade"
-                    min="1"
-                >
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" placeholder="Ex. 5" required>
             </div>
 
-            <!-- BOTÃO AZUL -->
             <button type="submit" class="btn-primary">
-                Adicionar Produto
+                Adicionar ao carrinho
             </button>
 
         </form>
 
-
-        <!-- RESUMO -->
+        <!-- Cabeçalho de ações e resumo -->
         <div class="resumo-container">
 
-            <p id="total-estoque">
-                Total em Estoque: R$ 0,00
-            </p>
+            <h3 id="total-estoque">
+                Total em estoque R$ 0.00
+            </h3>
 
-            <!-- BOTÃO VERMELHO -->
-            <button
-                type="button"
-                id="btn-limpar"
-                class="btn-danger"
-            >
-                Limpar Tudo
+            <button id="limpar-tabela" class="btn-danger">
+                Limpar tudo
             </button>
 
         </div>
 
-
-        <!-- TABELA -->
+        <!-- Tabela de exibição -->
         <table id="tabela-produtos">
 
             <thead>
                 <tr>
-                    <th>Produto</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Subtotal</th>
+                    <th>Nome</th>
+                    <th>Preço-un</th>
+                    <th>Quant.</th>
+                    <th>Sub-total</th>
                     <th>Ações</th>
                 </tr>
             </thead>
 
             <tbody>
-                <!-- Os produtos aparecerão aqui pelo JavaScript -->
+                <!-- As linhas da tabela vão ser inseridas pelo JS -->
             </tbody>
 
         </table>
 
     </div>
 
-
     <script src="script.js"></script>
 
 </body>
+
 </html>
