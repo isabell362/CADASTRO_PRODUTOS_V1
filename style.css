@@ -1,59 +1,191 @@
+/* ========================= */
+/* CONFIGURAÇÃO GERAL */
+/* ========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+
+/* ========================= */
+/* FUNDO DO SITE */
+/* ========================= */
+
+html,
+body {
+    min-height: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
+
+    color: #164e63;
+
     padding: 20px;
+
+    /* FUNDO DO OCEANO */
+    background-image:
+        linear-gradient(
+            rgba(20, 100, 120, 0.30),
+            rgba(20, 120, 140, 0.30)
+        ),
+        url("plano de fundo.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
+
+/* ========================= */
+/* CONTAINER PRINCIPAL */
+/* ========================= */
 
 .container {
     max-width: 650px;
-    background-color: #fff;
+
     margin: 30px auto;
     padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* Efeito de pérola */
+    background-color: rgba(255, 255, 255, 0.94);
+
+    border-radius: 20px;
+
+    border: 2px solid #d5f5f2;
+
+    box-shadow:
+        0 8px 25px rgba(20, 80, 100, 0.30);
 }
+
+
+/* ========================= */
+/* FOTO QUADRADA - ESTILO MAR */
+/* ========================= */
+
+.moldura-mar {
+    width: 190px;
+    height: 190px;
+
+    margin: 5px auto 25px;
+
+    padding: 7px;
+
+    background: linear-gradient(
+        135deg,
+        #b8f3ee,
+        #39bfc0,
+        #167f9a,
+        #d9f8f3
+    );
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 0 3px #ffffff,
+        0 5px 18px rgba(25, 130, 150, 0.35);
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moldura-mar .foto-mar {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    border: 3px solid #ffffff;
+}
+
+
+/* ========================= */
+/* TÍTULO */
+/* ========================= */
 
 h1 {
     text-align: center;
+
     margin-bottom: 20px;
-    color: #1e293b;
+
+    color: #176b87;
+
+    text-shadow:
+        1px 1px 3px #c8f7f4;
 }
+
+
+/* ========================= */
+/* FORMULÁRIO */
+/* ========================= */
 
 form {
     display: flex;
+
     flex-direction: column;
+
     gap: 15px;
+
     margin-bottom: 25px;
 }
 
 .form-group {
     display: flex;
+
     flex-direction: column;
+
     gap: 5px;
 }
 
+
+/* ========================= */
+/* LABEL */
+/* ========================= */
+
 label {
     font-weight: bold;
+
     font-size: 14px;
+
+    color: #246477;
 }
 
+
+/* ========================= */
+/* INPUTS */
+/* ========================= */
+
 input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 11px;
+
+    border: 2px solid #a8e9e5;
+
+    border-radius: 8px;
+
     font-size: 16px;
+
+    background-color: #f7ffff;
+
+    color: #164e63;
 }
 
 input:focus {
     outline: none;
-    border-color: #2563eb;
+
+    border-color: #50c9c3;
+
+    box-shadow:
+        0 0 8px rgba(80, 201, 195, 0.25);
 }
 
 
@@ -63,40 +195,59 @@ input:focus {
 
 button {
     padding: 10px 15px;
+
     font-size: 15px;
+
     font-weight: bold;
+
     border: none;
-    border-radius: 4px;
+
+    border-radius: 8px;
+
     cursor: pointer;
-    transition: background-color 0.2s;
+
+    transition: 0.2s;
 }
 
 
 /* ========================= */
-/* ADICIONAR PRODUTO - AZUL */
+/* ADICIONAR PRODUTO */
 /* ========================= */
 
 .btn-primary {
-    background-color: #2563eb;
+    background: linear-gradient(
+        135deg,
+        #28b8b0,
+        #4fd1c5
+    );
+
     color: white;
+
+    box-shadow:
+        0 3px 8px rgba(40, 184, 176, 0.30);
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
+    background: linear-gradient(
+        135deg,
+        #159c96,
+        #36b9af
+    );
 }
 
 
 /* ========================= */
-/* LIMPAR TUDO - VERMELHO */
+/* LIMPAR TUDO */
 /* ========================= */
 
 .btn-danger {
-    background-color: #dc2626;
+    background-color: #e77c8b;
+
     color: white;
 }
 
 .btn-danger:hover {
-    background-color: #b91c1c;
+    background-color: #d85f70;
 }
 
 
@@ -106,20 +257,26 @@ button {
 
 .resumo-container {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 15px;
 
     margin-bottom: 15px;
-    padding-top: 10px;
 
-    border-top: 2px solid #e2e8f0;
+    padding-top: 12px;
+
+    border-top: 2px solid #c7efec;
 }
 
 #total-estoque {
     font-size: 18px;
+
     font-weight: bold;
-    color: #0f172a;
+
+    color: #176b87;
 }
 
 
@@ -129,38 +286,99 @@ button {
 
 table {
     width: 100%;
+
     border-collapse: collapse;
+
     margin-top: 10px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
 }
 
 th,
 td {
-    border: 1px solid #cbd5e1;
+    border: 1px solid #a9e3e0;
+
     padding: 10px;
+
     text-align: center;
 }
 
-th {
-    background-color: #2563eb;
-    color: white;
-}
 
-tbody tr:nth-child(even) {
-    background-color: #f8fafc;
+/* ========================= */
+/* CABEÇALHO DA TABELA */
+/* ========================= */
+
+th {
+    background: linear-gradient(
+        135deg,
+        #197c96,
+        #329d9c
+    );
+
+    color: white;
 }
 
 
 /* ========================= */
-/* BOTÃO EXCLUIR */
+/* LINHAS DA TABELA */
+/* ========================= */
+
+tbody tr:nth-child(even) {
+    background-color: #effcfb;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+
+/* ========================= */
+/* BOTÃO EXCLUIR PRODUTO */
 /* ========================= */
 
 .btn-remover {
-    background-color: #ef4444;
+    background-color: #e77c8b;
+
     color: white;
+
     padding: 5px 10px;
+
     font-size: 12px;
 }
 
 .btn-remover:hover {
-    background-color: #dc2626;
+    background-color: #d85f70;
+}
+
+
+/* ========================= */
+/* AJUSTE PARA CELULAR */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 18px;
+    }
+
+    .moldura-mar {
+        width: 150px;
+        height: 150px;
+    }
+
+    .resumo-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 7px;
+    }
 }
