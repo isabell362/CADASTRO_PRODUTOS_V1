@@ -1,5 +1,3 @@
-
-
 // =====================================================
 // FASE 1: MODELAGEM DOS DADOS - CLASSE PRODUTO
 // =====================================================
@@ -384,7 +382,6 @@ carregarDoLocalStorage();
 
 // Depois mostra os produtos na tela
 atualizarInterface();
-
 //=======================================================================================
 //Desafio 2: Indicadores Financeiros do Estoque (Regra de Negócio + Reduce)
 //=======================================================================================
