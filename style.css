@@ -382,3 +382,41 @@ tbody tr:nth-child(odd) {
         padding: 7px;
     }
 }
+
+
+/* Botão Editar — azul praiano */
+.btn-editar {
+    background-color: #64BBD0;
+    color: #FFFFFF;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-editar:hover {
+    background-color: #329BB8;
+}
+
+/* Dá espaço entre o resumo e a tabela */
+.resumo-container {
+    margin-bottom: 25px;
+}
+
+/* Separa a tabela do botão Limpar tudo */
+#tabela-produtos {
+    margin-top: 25px;
+}
+
+/* Mantém os botões de ação dentro da tabela */
+#tabela-produtos td:last-child {
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Espaço entre Editar e Remover */
+.btn-editar {
+    margin-right: 10px;
+}
