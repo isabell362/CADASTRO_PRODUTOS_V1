@@ -467,3 +467,79 @@ tbody tr:nth-child(odd) {
 
     font-weight: bold;
 }
+
+/* ========================= */
+/* SUGESTÕES DE PRODUTOS */
+/* ========================= */
+
+.campo-nome-container {
+    position: relative;
+}
+
+.sugestoes-produtos {
+    display: none;
+
+    width: 100%;
+
+    background-color: #ffffff;
+
+    border: 2px solid #a8e9e5;
+
+    border-radius: 10px;
+
+    margin-top: 3px;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 12px rgba(20, 80, 100, 0.15);
+
+    z-index: 10;
+}
+
+.sugestoes-produtos.ativa {
+    display: block;
+}
+
+.sugestao-item {
+    padding: 12px;
+
+    cursor: pointer;
+
+    color: #164e63;
+
+    border-bottom: 1px solid #d5f5f2;
+
+    transition: 0.2s;
+}
+
+.sugestao-item:last-child {
+    border-bottom: none;
+}
+
+.sugestao-item:hover {
+    background-color: #e6fafa;
+}
+
+.sugestao-item strong {
+    color: #176b87;
+}
+
+.sugestao-detalhes {
+    display: block;
+
+    font-size: 12px;
+
+    color: #5795a5;
+
+    margin-top: 4px;
+}
+
+.mensagem-sugestao {
+    padding: 12px;
+
+    color: #5795a5;
+
+    font-size: 13px;
+
+    text-align: center;
+}

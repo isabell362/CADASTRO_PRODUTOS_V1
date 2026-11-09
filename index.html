@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,22 +18,42 @@
 
         <h1>Cadastro de Produtos</h1>
 
-        <!-- Formulário de entrada -->
         <form id="produto-form">
 
-            <div class="form-group">
+            <div class="form-group campo-nome-container">
                 <label for="nome">Nome do produto:</label>
-                <input type="text" id="nome" placeholder="Ex. Notebook" required>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Ex. Notebook"
+                    autocomplete="off"
+                    required
+                >
+
+                <!-- NOVO: SUGESTÕES DE PRODUTOS -->
+                <div id="sugestoes-produtos" class="sugestoes-produtos"></div>
             </div>
 
             <div class="form-group">
                 <label for="preco">Preço (R$):</label>
-                <input type="number" id="preco" step="0.01" placeholder="Ex. 3500.00" required>
+                <input
+                    type="number"
+                    id="preco"
+                    step="0.01"
+                    placeholder="Ex. 3500.00"
+                    required
+                >
             </div>
 
             <div class="form-group">
                 <label for="quantidade">Quantidade:</label>
-                <input type="number" id="quantidade" placeholder="Ex. 5" required>
+                <input
+                    type="number"
+                    id="quantidade"
+                    placeholder="Ex. 5"
+                    required
+                >
             </div>
 
             <button type="submit" class="btn-primary">
@@ -43,22 +62,17 @@
 
         </form>
 
-        <!-- Cabeçalho de ações e resumo -->
         <div class="resumo-container">
-
-            <h3 id="total-estoque">
-                Total em estoque R$ 0.00
-            </h3>
+            <h3 id="total-estoque">Total em estoque R$ 0.00</h3>
 
             <button id="limpar-tabela" class="btn-danger">
                 Limpar tudo
             </button>
-
         </div>
 
-        <!-- Campo de pesquisa V4 -->
         <div class="form-group busca-container">
             <label for="campo-busca">Pesquisar produto:</label>
+
             <input
                 type="text"
                 id="campo-busca"
@@ -66,7 +80,6 @@
             >
         </div>
 
-        <!-- Tabela de exibição -->
         <table id="tabela-produtos">
 
             <thead>
@@ -90,5 +103,4 @@
     <script src="script.js"></script>
 
 </body>
-
 </html>
