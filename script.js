@@ -1,3 +1,4 @@
+
 // =====================================================
 // FASE 1: CLASSE PRODUTO
 // =====================================================
@@ -51,6 +52,7 @@ class Produto {
     }
 }
 
+
 // =====================================================
 // FASE 2: GERENCIAMENTO DOS PRODUTOS
 // =====================================================
@@ -58,8 +60,8 @@ class Produto {
 const listaDeProdutos = [];
 const CHAVE_STORAGE = "sistema_estoque_produtos";
 
-// null = cadastro novo; número = índice do produto em edição
 let indiceEdicao = null;
+
 
 // =====================================================
 // FASE 3: ELEMENTOS DO HTML
@@ -68,9 +70,13 @@ let indiceEdicao = null;
 const formProduto = document.getElementById("produto-form");
 const btnLimparTudo = document.getElementById("limpar-tabela");
 const totalEstoqueEl = document.getElementById("total-estoque");
+
 const nomeInput = document.getElementById("nome");
 const precoInput = document.getElementById("preco");
 const quantidadeInput = document.getElementById("quantidade");
+
+// NOVO NA V4: CAMPO DE PESQUISA
+const campoBusca = document.getElementById("campo-busca");
 
 const btnEnviar = formProduto
     ? formProduto.querySelector('button[type="submit"], input[type="submit"]')
@@ -94,6 +100,7 @@ function alterarTextoBotao(texto) {
     }
 }
 
+
 // =====================================================
 // FASE 4: SALVAR NO LOCALSTORAGE
 // =====================================================
@@ -110,6 +117,7 @@ function salvarNoLocalStorage() {
         JSON.stringify(dadosParaSalvar)
     );
 }
+
 
 // =====================================================
 // FASE 5: CARREGAR DO LOCALSTORAGE
@@ -143,10 +151,12 @@ function carregarDoLocalStorage() {
                 );
             }
         });
+
     } catch (erro) {
         console.error("Erro ao carregar os produtos:", erro);
     }
 }
+
 
 // =====================================================
 // FASE 6: VALIDAR E ENVIAR O FORMULÁRIO
@@ -196,10 +206,10 @@ if (formProduto) {
             );
 
             if (indiceEdicao === null) {
-                // CADASTRAR: adiciona um produto novo
+                // CADASTRAR
                 listaDeProdutos.push(novoProduto);
             } else {
-                // ATUALIZAR: substitui o produto existente
+                // ATUALIZAR
                 listaDeProdutos[indiceEdicao] = novoProduto;
             }
 
@@ -217,6 +227,7 @@ if (formProduto) {
     });
 }
 
+
 // =====================================================
 // FASE 7: PREPARAR EDIÇÃO
 // =====================================================
@@ -233,19 +244,17 @@ function prepararEdicao(index) {
 
     const produto = listaDeProdutos[index];
 
-    // Preenche os campos com os dados existentes
     nomeInput.value = produto.nome;
     precoInput.value = produto.preco;
     quantidadeInput.value = produto.quantidade;
 
-    // Ativa o modo de edição
     indiceEdicao = index;
 
-    // Altera o texto do botão
     alterarTextoBotao("Salvar Alterações");
 
     nomeInput.focus();
 }
+
 
 // =====================================================
 // FASE 8: REMOVER UM PRODUTO
@@ -262,11 +271,11 @@ function removerProduto(index) {
 
     listaDeProdutos.splice(index, 1);
 
-    // Cancela ou ajusta a edição, se necessário
     if (indiceEdicao === index) {
         indiceEdicao = null;
         formProduto.reset();
         alterarTextoBotao(textoBotaoOriginal);
+
     } else if (indiceEdicao !== null && index < indiceEdicao) {
         indiceEdicao--;
     }
@@ -274,6 +283,7 @@ function removerProduto(index) {
     salvarNoLocalStorage();
     atualizarInterface();
 }
+
 
 // =====================================================
 // FASE 9: LIMPAR TODOS OS PRODUTOS
@@ -295,14 +305,48 @@ if (btnLimparTudo) {
     });
 }
 
+
 // =====================================================
-// FASE 10: CALCULAR TOTAL DO ESTOQUE
+// FASE 10: BUSCA DINÂMICA - V4
 // =====================================================
 
-function atualizarTotalEstoque() {
-    const valorTotal = listaDeProdutos.reduce(
-        (acumulador, produto) => {
-            return acumulador + produto.calcularSubtotal();
+// Obtém somente os produtos que correspondem à pesquisa
+
+function obterProdutosFiltrados() {
+
+    const termoBusca = campoBusca
+        ? campoBusca.value.toLowerCase().trim()
+        : "";
+
+    return listaDeProdutos
+        .map((produto, index) => ({
+            produto: produto,
+            index: index
+        }))
+        .filter(item =>
+            item.produto.nome.toLowerCase().includes(termoBusca)
+        );
+}
+
+
+// Escuta a digitação do usuário
+
+if (campoBusca) {
+    campoBusca.addEventListener("input", function() {
+        atualizarInterface();
+    });
+}
+
+
+// =====================================================
+// FASE 11: CALCULAR TOTAL DO ESTOQUE - V4
+// =====================================================
+
+function atualizarTotalEstoque(produtosVisiveis) {
+
+    const valorTotal = produtosVisiveis.reduce(
+        (acumulador, item) => {
+            return acumulador + item.produto.calcularSubtotal();
         },
         0
     );
@@ -318,11 +362,13 @@ function atualizarTotalEstoque() {
     }
 }
 
+
 // =====================================================
-// FASE 11: RENDERIZAR A TABELA
+// FASE 12: RENDERIZAR A TABELA
 // =====================================================
 
-function renderizarTabela() {
+function renderizarTabela(produtosVisiveis) {
+
     const tabelaBody = document.querySelector(
         "#tabela-produtos tbody"
     );
@@ -336,7 +382,33 @@ function renderizarTabela() {
 
     tabelaBody.innerHTML = "";
 
-    listaDeProdutos.forEach((produto, index) => {
+    // MENSAGEM QUANDO NÃO HÁ RESULTADOS
+
+    if (produtosVisiveis.length === 0) {
+
+        const linha = document.createElement("tr");
+        const celula = document.createElement("td");
+
+        celula.colSpan = 5;
+        celula.className = "mensagem-vazia";
+
+        if (listaDeProdutos.length === 0) {
+            celula.textContent = "Nenhum produto cadastrado.";
+        } else {
+            celula.textContent = "Nenhum produto encontrado.";
+        }
+
+        linha.appendChild(celula);
+        tabelaBody.appendChild(linha);
+
+        return;
+    }
+
+    produtosVisiveis.forEach(item => {
+
+        const produto = item.produto;
+        const index = item.index;
+
         const linha = document.createElement("tr");
 
         const celulaNome = document.createElement("td");
@@ -361,6 +433,7 @@ function renderizarTabela() {
         const celulaAcoes = document.createElement("td");
 
         // BOTÃO EDITAR
+
         const btnEditar = document.createElement("button");
         btnEditar.type = "button";
         btnEditar.className = "btn-editar";
@@ -371,6 +444,7 @@ function renderizarTabela() {
         });
 
         // BOTÃO REMOVER
+
         const btnRemover = document.createElement("button");
         btnRemover.type = "button";
         btnRemover.className = "btn-remover";
@@ -394,14 +468,27 @@ function renderizarTabela() {
     });
 }
 
+
 // =====================================================
-// FASE 12: ATUALIZAR INTERFACE E INICIAR O SISTEMA
+// FASE 13: ATUALIZAR INTERFACE E INICIAR O SISTEMA
 // =====================================================
 
 function atualizarInterface() {
-    renderizarTabela();
-    atualizarTotalEstoque();
+
+    // Obtém os produtos que correspondem à pesquisa
+    const produtosVisiveis = obterProdutosFiltrados();
+
+    // Atualiza a tabela
+    renderizarTabela(produtosVisiveis);
+
+    // Atualiza o total considerando somente os visíveis
+    atualizarTotalEstoque(produtosVisiveis);
 }
+
+
+// =====================================================
+// FASE 14: INICIAR O SISTEMA
+// =====================================================
 
 carregarDoLocalStorage();
 atualizarInterface();

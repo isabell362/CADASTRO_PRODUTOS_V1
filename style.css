@@ -420,3 +420,50 @@ tbody tr:nth-child(odd) {
 .btn-editar {
     margin-right: 10px;
 }
+
+
+/* ========================= */
+/* PESQUISA DE PRODUTOS - V4 */
+/* ========================= */
+
+.busca-container {
+    margin-bottom: 15px;
+}
+
+#campo-busca {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 2px solid #a8e9e5;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    background-color: #f7ffff;
+
+    color: #164e63;
+
+    transition: 0.2s;
+}
+
+#campo-busca:focus {
+    outline: none;
+
+    border-color: #329d9c;
+
+    box-shadow: 0 0 8px rgba(80, 201, 195, 0.35);
+}
+
+/* Mensagem quando nenhum produto for encontrado */
+
+.mensagem-vazia {
+    text-align: center;
+
+    padding: 18px;
+
+    color: #e77c8b;
+
+    font-weight: bold;
+}

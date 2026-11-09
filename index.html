@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,14 +13,11 @@
 
     <div class="container">
 
-
         <div class="moldura-mar">
             <img src="belle.jpg" alt="Minha foto" class="foto-mar">
         </div>
 
         <h1>Cadastro de Produtos</h1>
-
-
 
         <!-- Formulário de entrada -->
         <form id="produto-form">
@@ -46,17 +44,27 @@
         </form>
 
         <!-- Cabeçalho de ações e resumo -->
-<div class="resumo-container">
+        <div class="resumo-container">
 
-    <h3 id="total-estoque">
-        Total em estoque R$ 0.00
-    </h3>
+            <h3 id="total-estoque">
+                Total em estoque R$ 0.00
+            </h3>
 
-    <button id="limpar-tabela" class="btn-danger">
-        Limpar tudo
-    </button>
+            <button id="limpar-tabela" class="btn-danger">
+                Limpar tudo
+            </button>
 
-</div>
+        </div>
+
+        <!-- Campo de pesquisa V4 -->
+        <div class="form-group busca-container">
+            <label for="campo-busca">Pesquisar produto:</label>
+            <input
+                type="text"
+                id="campo-busca"
+                placeholder="Digite o nome do produto..."
+            >
+        </div>
 
         <!-- Tabela de exibição -->
         <table id="tabela-produtos">
